@@ -55,7 +55,7 @@ function App() {
     <>
       <Header />
       <main className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-5xl font-light text-center text-gray-700">
+        <h1 className="text-5xl font-light px-6 text-center text-gray-700">
           Verifique notícias ambientais
           <br></br>
           <span className="bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text">
