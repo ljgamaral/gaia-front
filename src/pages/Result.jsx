@@ -29,12 +29,18 @@ function Result() {
           <p className="text-red-500">{result.error}</p>
         ) : (
           <>
-            <h2 className={`${  result.content?.label === "negativo" ? "text-red-500" : "text-green-500"} text-2xl font-semibold`}>
+            <h2>{result.content?.title || "Sem título"}</h2>
+
+            <p className={`${  result.content?.label === "negativo" ? "text-red-500" : "text-green-500"} text-2xl font-semibold`}>
               {result.content?.label || "Sem rótulo"}
-            </h2>
+            </p>
+
+            <p className="mt-2 italic text-gray-600">
+              {result.content?.reason || "Sem motivo"}
+            </p>
 
             <p className="mt-4">
-              {result.content?.content || result.message || "Sem conteúdo"}
+              {result.content?.text || result.message || "Sem conteúdo"}
             </p>
 
             {result.content?.url && (
