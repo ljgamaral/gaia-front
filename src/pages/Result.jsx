@@ -29,8 +29,8 @@ function Result() {
           <p className="text-red-500">{result.error}</p>
         ) : (
           <>
-            <h2 className="text-2xl font-bold">
-              {result.content?.title || "Sem título"}
+            <h2 className={`${  result.content?.label === "negativo" ? "text-red-500" : "text-green-500"} text-2xl font-semibold`}>
+              {result.content?.label || "Sem rótulo"}
             </h2>
 
             <p className="mt-4">
