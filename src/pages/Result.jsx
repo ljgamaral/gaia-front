@@ -6,6 +6,16 @@ import Footer from "../components/Footer";
 function Result() {
   const location = useLocation();
   const result = location.state;
+  const label = result?.content?.label;
+  const topic = result?.content?.topic;
+  const labelText = label ? label.charAt(0).toUpperCase() + label.slice(1) : "Sem rótulo";
+  const topicText = topic ? topic.charAt(0).toUpperCase() + topic.slice(1) : "Sem tema";
+  const labelColor =
+    label === "negativo"
+      ? "text-red-500"
+      : label === "positivo"
+        ? "text-green-500"
+        : "text-gray-500";
 
   if (!result) {
     return (
@@ -29,14 +39,14 @@ function Result() {
             <p className="text-red-500">{result.error}</p>
           ) : (
             <>
-              <p
-                className={`${result.content?.label === "negativo" ? "text-red-500" : "text-green-500"} p-4 pb-0 text-2xl font-bold`}
-              >
-                {result.content?.label === "negativo" ? "Negativo" : "Positivo"}
+              <p className={`${labelColor} p-4 pb-0 text-2xl font-bold`}>
+                {labelText} ({result.content?.confidence})
               </p>
 
-              <p className="mt-2 italic text-gray-400">
-                {result.content?.reason || "Sem motivo"}
+              <p className="px-4 pt-2 text-lg font-semibold text-gray-700">
+                Tema: {topicText}
+                {result.content?.topic_confidence !== undefined &&
+                  ` (${result.content.topic_confidence})`}
               </p>
 
               <h2 className="text-4xl font-bold mt-4">
